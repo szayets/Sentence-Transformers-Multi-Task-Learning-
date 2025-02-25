@@ -2,9 +2,13 @@
 
 
 # Install Required Libraries
+```python
 !pip install torch transformers sentence-transformers datasets scikit-learn
+```
 
 # Importing the Required Libraries
+
+```python
 import torch
 from transformers import AutoModel, AutoTokenizer
 from sentence_transformers import SentenceTransformer
@@ -13,7 +17,7 @@ from sklearn.model_selection import train_test_split
 import torch
 import torch.nn as nn
 import torch.optim as optim
-
+```
 
 
 
