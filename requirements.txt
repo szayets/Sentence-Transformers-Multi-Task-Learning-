@@ -1,0 +1,5 @@
+jupyterlab
+torch
+transformers
+sentence_transformers
+ipywidgets
