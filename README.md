@@ -1,50 +1,125 @@
 # Sentence Embeddings with Sentence-Transformers
 
-This project demonstrates how to use the `sentence-transformers` library to generate embeddings for sentences using a pre-trained model. Sentence embeddings are numerical representations of text that capture semantic meaning, useful for tasks like text similarity, clustering, or classification.
+## Overview
+
+Welcome to the Sentence Embeddings with Sentence-Transformers take-home project. This task focuses on generating sentence embeddings using the sentence-transformers library while demonstrating an understanding of natural language processing (NLP) concepts and proficiency with pre-trained models.
+
+Sentence embeddings are numerical representations of text that capture semantic meaning, making them useful for tasks such as text similarity, clustering, and classification. This project utilizes the all-MiniLM-L6-v2 model, a lightweight and efficient option ideal for quick experimentation and learning.
+
+By completing this task, the goal is to showcase technical proficiency, problem-solving abilities, and practical experience with NLP techniques—key aspects relevant to the ML Apprentice role.
+
+The project is packaged as a Jupyter Notebook (`ml_apprentice.ipynb`) and can be run in a Docker container with Jupyter Lab, providing an interactive and reproducible environment.
+
+---
 
 ## Prerequisites
 
-- **Python**: Version 3.6 or higher (tested with 3.11.7)
-- **Libraries**: 
-  - `sentence-transformers` (install via pip)
+Before diving in, ensure you have the following installed on your system:
 
-### Installation
+- **Python**: Version 3.6 or higher.
+- **Docker**: Required to run the project in a containerized environment. Download and install Docker Desktop from [docker.com](https://www.docker.com/products/docker-desktop/).
 
-To run this code, you need to install the `sentence-transformers` library. Use the following command:
+---
 
+## Project Structure
+
+- **`ml_apprentice.ipynb`**: The Jupyter Notebook containing the code for generating sentence embeddings using `sentence-transformers`.
+- **`requirements.txt`**: Lists the Python dependencies needed for the project.
+- **`Dockerfile`**: Configures a Docker container to run the Jupyter Lab environment with all dependencies pre-installed.
+- **`README.md`**: This file—your guide to getting started and understanding the project.
+
+---
+
+## Installation and Setup
+
+Follow these step-by-step instructions to set up and run the project:
+
+### 1. Clone or Download the Repository
+
+If you’re using Git, clone this repository:
 ```bash
-pip install sentence-transformers
-If you encounter a ModuleNotFoundError: No module named 'sentence_transformers', it means the library is not installed in your environment. Run the command above to resolve this.
+git clone <repository-url>
+cd sentence-embeddings-sentence-transformers
+```
+If you don’t have Git, download the files and place them in a folder on your computer.
+
+### 2. Install Docker
+Ensure Docker Desktop is installed and running on your system.
+
+### 3. Verify Docker is Working
+Run:
+```bash
+docker --version
+```
+You should see the Docker version output.
+
+### 4. Build the Docker Image
+Navigate to the project directory and run:
+```bash
+docker build -t sentence-embeddings-jupyter .
 ```
 
+### 5. Run the Docker Container
+Launch Jupyter Lab in a container:
+```bash
+docker run -p 8888:8888 -v $(pwd):/app sentence-embeddings-jupyter
+```
 
-#### Code Overview
-The code performs the following steps:
+### 6. Access Jupyter Lab
+Open your browser and go to:
+```
+http://localhost:8888
+```
 
-1 Imports the SentenceTransformer class from the sentence-transformers library.
-2 Loads a pre-trained model (all-MiniLM-L6-v2), which is lightweight and efficient for generating sentence embeddings.
-3 Defines a list of example sentences.
-4 Encodes the sentences into embeddings (numerical vectors).
-5 Prints each sentence along with the first five values of its embedding for demonstration.
+### 7. Open and Run the Notebook
+Open `ml_apprentice.ipynb` in Jupyter Lab and execute the cells to generate sentence embeddings.
 
-### File
-ml_apprentice.ipynb: The Jupyter Notebook containing the code.
+---
+
+## Dependencies
+
+The project relies on the following Python libraries, listed in `requirements.txt`:
+```text
+jupyterlab
+torch
+transformers
+sentence_transformers
+ipywidgets
+```
+To install these manually:
+```bash
+pip install -r requirements.txt
+```
+
+---
 
 
-### Usage
-Open the notebook.ipynb file in Jupyter Notebook or JupyterLab.
-Ensure the sentence-transformers library is installed (see Installation section).
-Run the cells in sequence:
-The first cell loads the model, encodes the sentences, and prints the embeddings.
-The second cell outputs the sentences list (if executed standalone).
+## Troubleshooting
+
+### 1. ModuleNotFoundError: No module named 'sentence_transformers'
+Fix: Install with:
+```bash
+pip install sentence-transformers
+```
+
+### 2. Docker Fails to Build or Run
+Fix:
+- Check for disk space issues.
+- Ensure the Dockerfile and `requirements.txt` are correct.
+- Run `docker logs <container-id>` to debug.
+
+### 3. Jupyter Lab Doesn’t Load
+Fix:
+- Ensure no process is using port 8888:
+```bash
+netstat -aon | findstr :8888
+```
+- Restart the container.
+
+---
+
+### Summary
+This Docker-based Jupyter Lab environment is optimized for fast installation and execution. It uses a lightweight Python 3.8-slim image, efficiently installs dependencies, and includes sentence-transformers and CPU-only PyTorch for machine learning tasks. The setup minimizes unnecessary installations, reduces image size, and ensures smooth execution of Jupyter Lab inside a container. Users can customize the port and authentication for secure access.
 
 
-### Troubleshooting
-Error: ModuleNotFoundError: No module named 'sentence_transformers'
-Fix: Install the library with pip install sentence-transformers.
-Environment Issues: If using a virtual environment, ensure it’s activated before running the code.
-
-### Notes
-The all-MiniLM-L6-v2 model is a small, efficient transformer model. Other models are available in the sentence-transformers library; see the official documentation for options.
-Embeddings are high-dimensional vectors (384 dimensions for this model). The code truncates output to the first 5 values for readability.
-Embeddings are high-dimensional vectors (384 dimensions for this model). The code truncates output to the first 5 values for readability.
+Thank you for taking the time to review this project! I appreciate your feedback and insights, and I look forward to any suggestions for further improvements.
